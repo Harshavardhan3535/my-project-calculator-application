@@ -1,0 +1,23 @@
+ def on_button_click(self, button):
+        if button == "C":
+            self.expression = ""
+            self.input_text.set(self.expression)
+        elif button == "CE":
+            self.expression = self.expression[:-1]
+            self.input_text.set(self.expression)
+        elif button == "=":
+            try:
+                result = str(eval(self.expression))
+                self.input_text.set(result)
+                self.expression = result
+            except Exception as e:
+                self.input_text.set("SyntaxError")
+                self.expression = ""
+        else:
+            self.expression += button
+            self.input_text.set(self.expression)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    calculator = Calculator(root)
+    root.mainloop()
